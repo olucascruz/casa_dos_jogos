@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+}
+
+header{
+    background-color: rgb(5, 5, 5);
+    color: aliceblue;
+}
+
+.logo{
+    margin-left: 40%;
+    margin-right: 40%;
+    text-align: center;
+}
+
+.logo > img{
+    margin-bottom: 0;
+}
+
+.logo > h1{
+    font-size: 30px;
+}
+
+.buttons{
+    position: absolute;
+    right: 0;
+    top: 5%;
+}
+
+footer{
+    bottom: 0;
+    background-color: aliceblue;
+}
+
