@@ -7,3 +7,6 @@ def home(request):
 
 def cadastro(request):
     return render(request, 'cadastro.html')
+    
+def entrar(request):
+    return render(request, 'entrar.html')

@@ -7,4 +7,5 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.home),
     path('cadastro/', views.cadastro),
+    path('entrar/', views.entrar),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
