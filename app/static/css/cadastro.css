@@ -1,0 +1,17 @@
+.cadastro{
+    background-color: rgb(141, 126, 126);
+    margin: auto;
+    width: 50%;
+    border: 3px solid rgba(129, 0, 75, 0.685);
+    padding: 10px;
+}
+
+.cadastro-title{
+    text-align: center;
+}
+
+.btn-cadastrar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
