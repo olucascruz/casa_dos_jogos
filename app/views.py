@@ -1,7 +1,10 @@
-from django.contrib.messages import constants as messages
+from django.contrib import messages
 from django.shortcuts import redirect, render
 from app.models import User
-
+from app.forms import AutoForm
+from django.contrib.auth import User as UserAuth
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as login_django
 # Create your views here.
 
 def home(request):
@@ -9,7 +12,9 @@ def home(request):
 
 def cadastro(request):
     if request.method == "GET":
-        return render(request, 'cadastro.html')
+        form = AutoForm()
+        context = {'form': form}
+        return render(request, 'cadastro.html', context=context)
     else:
         username = request.POST.get('username')
         email = request.POST.get('email')
@@ -26,14 +31,25 @@ def cadastro(request):
             messages.info(request, "Este username já existe")
             return redirect('cadastro')
         else:
-            user = User(username, email, password)
+            user = User(username=username, email=email, password=password)
             user.save()
             messages.info(request, "Usuario cadastrado com sucesso!")
-            return redirect('')
+            return redirect('home')
 
 
 def entrar(request):
-    return render(request, 'entrar.html')
+    if request.method == "GET":
+        return render(request, 'entrar.html')
+    else:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+
+
 
 def add_jogo(request):
     return render(request, "add_jogo.html")
+
+

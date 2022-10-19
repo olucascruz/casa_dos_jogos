@@ -6,24 +6,7 @@
 <h2 class="cadastro-title">Cadastro</h2>
 <hr>
 <form action="{% url 'cadastro' %}" method="POST">{% csrf_token %}
-    <div class="mb-3">
-      <label for="username" class="form-label">
-        <strong>Username</strong>
-      </label>
-      <input type="text" name="username" class="form-control" id="username">
-    </div>
-    <div class="mb-3">
-        <label for="inputEmail1" class="form-label">
-          <strong>Email</strong>
-        </label>
-        <input type="email" name="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">
-          <strong>Senha</strong>
-        </label>
-        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-    </div>
+   {{form.as_p}}
     <div class="btn-cadastrar">
       <button type="submit" class="btn btn-primary">Cadastrar</button>
     </div>
