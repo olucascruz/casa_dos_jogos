@@ -10,3 +10,6 @@ def cadastro(request):
     
 def entrar(request):
     return render(request, 'entrar.html')
+
+def add_jogo(request):
+    return render(request, "add_jogo.html")

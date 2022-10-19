@@ -8,4 +8,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('cadastro/', views.cadastro, name='cadastro'),
     path('entrar/', views.entrar, name='entrar'),
+    path('add_jogo/', views.add_jogo, name='add_jogo'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

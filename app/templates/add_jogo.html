@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br>
+<div class="cadastro">
+    <form action="">
+        <div class="mb-3 form-check">
+            <label for="nomeDoJogo" class="form-label">
+                <strong>Nome do jogo</strong>
+            </label>
+            <input type="text" class="form-control" name="nomeJogo" id="nomeDoJogo" placeholder="Escreva o nome do seu jogo aqui">
+        </div>
+        
+        <div class="mb-3 form-check">
+            <label for="descricaoJogo">
+                <strong>Descrição do jogo</strong>
+            </label>
+            <textarea class="form-control" placeholder="Descreva seu jogo aqui" id="descricaoJogo"></textarea>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="file" src="" alt="imagemJogo" name="capaJogo"
+            accept="image/png, image/jpeg">
+        </div>
+
+        <div class="mb-3 form-check">
+            <label for="linkJogo">
+                <strong>Link do jogo</strong>
+            </label>
+            <input type="text" class="form-control" name="linkJogo" for="linkJogo" placeholder="Escreva o link do seu jogo aqui">
+        </div>
+        <div class="btn-cadastrar">
+            <button type="submit" class="btn btn-primary">
+                Adicionar
+            </button>
+          </div>
+    </form>
+
+
+</div>
+
+{% endblock %}
