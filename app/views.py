@@ -4,9 +4,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 
-from app.forms import FormCadastro, FormEntrar
+
+from app.forms import FormCadastro, FormEntrar, FormAddGame
 # Create your views here.
 
 def home(request):
@@ -61,10 +63,12 @@ def entrar(request):
 
 
 
-
+@login_required(login_url="/entrar")
 def add_jogo(request):
-    return render(request, "add_jogo.html")
+    form = FormAddGame()
+    context = {'form': form}
+    return render(request, "add_jogo.html", context=context)
 
 def sair(request):
     logout(request)
-    return render(request, "home.html")
+    return redirect("home")

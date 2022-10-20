@@ -1,7 +1,6 @@
-from pyexpat import model
 from django import forms
 from django.contrib.auth.models import User
-
+from app.models import Game
 
 class FormCadastro(forms.ModelForm):
     class Meta:
@@ -22,4 +21,15 @@ class FormEntrar(forms.ModelForm):
         widgets = {
             'username': forms.TextInput(attrs={'class':'form-control', 'required':True}),
             'password': forms.PasswordInput(attrs={'class':'form-control', 'required':True})
+        }
+
+class FormAddGame(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = ('title', 'subtitle', 'description', 'genre', 'image')
+
+        widgets ={
+            'title': forms.TextInput(attrs={'class':'form-control'}),
+            'subtitle': forms.TextInput(attrs={'class':'form-control', }),
+            'description': forms.Textarea(attrs={'class':'form-control', 'style':'resize:none;', 'rows':'8'}),
         }
