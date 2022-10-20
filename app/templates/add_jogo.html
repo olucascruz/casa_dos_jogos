@@ -6,7 +6,8 @@
 <div class="cadastro">
     <h2 class="cadastro-title" >Adicionar Jogo</h2>
     <hr>
-    <form action="">
+    <form action="{% url 'add_jogo'%}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
         {{form}}
         <hr>
         <div class="btn-cadastrar">
