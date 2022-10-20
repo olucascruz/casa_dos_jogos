@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br>
+{% if messages %}
+{% for m in messages %}
+
+<div class="alert alert-danger" role="alert">
+  {{m}}
+</div>
+{% endfor %}
+{% endif %}
+
+{% if games %}
+{% for game in games %}
+
+
+    <div class="card" style="width: 12rem;">
+        {% load static %} 
+        <img src="http://localhost:8000/static/img/{{game.image}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{game.title}} - {{game.subtitle}}</h5>
+          <p class="card-text">{{game.description}}</p>
+          <a href="{% url 'edit_jogo' game.id %}" class="btn btn-primary">Editar</a>
+          <hr>
+          <a href="{% url 'del_jogo' game.id%}" class="btn btn-primary">Deletar</a>
+        </div>
+      </div>
+    
+{% endfor %}
+{% endif %}
+
+{% endblock %}

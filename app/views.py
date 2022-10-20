@@ -99,3 +99,33 @@ def add_jogo(request):
 def sair(request):
     logout(request)
     return redirect("home")
+
+def meus_jogos(request):
+    games = Game.objects.filter(developer = request.user)
+
+    context = {
+        'games': games
+    }
+    return render(request, "meus_jogos.html", context=context)
+
+def edit_jogo(request, game_pk):
+    game =  Game.objects.get(pk=game_pk)
+
+    form = FormAddGame(request.POST or None, instance=game)
+
+    if request.POST:
+        if form.is_valid():
+            form.save()
+            return redirect('meus_jogos')
+
+    context = {
+        'game': game.id,
+        'form': form,
+    }
+    return render(request, 'edit_jogo.html', context)
+
+
+def del_jogo(request, game_pk):
+    game = Game.objects.get(pk=game_pk)
+    game.delete()
+    return redirect('meus_jogos')
