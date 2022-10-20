@@ -26,6 +26,10 @@
         <div class="buttons">
             {% if user.is_authenticated %}
                 {{user.get_username}} &nbsp;&nbsp;
+                <a href="{% url 'sair' %}">Sair</a>
+                <a href="{% url 'add_jogo' %}">Add jogo</a>
+                <a href="#">Meus jogos</a>
+
              {% else %}
             <button onclick="location.href='/entrar'"  type="button" class="btn btn-light">Entrar</button>
             <button onclick="location.href='/cadastro'" type="button" class="btn btn-light">Cadastrar</button>

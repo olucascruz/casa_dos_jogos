@@ -3,6 +3,8 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
+from django.contrib.auth import logout
+
 
 from app.forms import FormCadastro, FormEntrar
 # Create your views here.
@@ -63,4 +65,6 @@ def entrar(request):
 def add_jogo(request):
     return render(request, "add_jogo.html")
 
-
+def sair(request):
+    logout(request)
+    return render(request, "home.html")
