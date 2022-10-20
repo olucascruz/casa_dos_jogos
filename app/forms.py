@@ -27,7 +27,13 @@ class FormAddGame(forms.ModelForm):
     class Meta:
         model = Game
         fields = ('title', 'subtitle', 'description', 'genre', 'image')
-
+        labels = {
+        "title": "Título:",
+        "subtitle": "Subtítulo:",
+        "description": "Descrição:",
+        "genre":"Gênero:",
+        "image":"Imagem:"
+            }
         widgets ={
             'title': forms.TextInput(attrs={'class':'form-control'}),
             'subtitle': forms.TextInput(attrs={'class':'form-control', }),
