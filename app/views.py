@@ -1,10 +1,10 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
-from app.models import User
-from app.forms import AutoForm
-from django.contrib.auth import User as UserAuth
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
+
+from app.forms import FormCadastro, FormEntrar
 # Create your views here.
 
 def home(request):
@@ -12,7 +12,7 @@ def home(request):
 
 def cadastro(request):
     if request.method == "GET":
-        form = AutoForm()
+        form = FormCadastro()
         context = {'form': form}
         return render(request, 'cadastro.html', context=context)
     else:
@@ -31,7 +31,7 @@ def cadastro(request):
             messages.info(request, "Este username já existe")
             return redirect('cadastro')
         else:
-            user = User(username=username, email=email, password=password)
+            user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
             messages.info(request, "Usuario cadastrado com sucesso!")
             return redirect('home')
@@ -39,12 +39,23 @@ def cadastro(request):
 
 def entrar(request):
     if request.method == "GET":
-        return render(request, 'entrar.html')
+        form = FormEntrar()
+        context = {'form': form}
+        return render(request, 'entrar.html', context=context)
     else:
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        user = authenticate(username=username, password=password)
+        user = authenticate( username=username, password=password)
+        print(username)
+        print(password)
+        print(user)
+        if user:
+            login_django(request, user)
+            return render(request, 'home.html')
+        else:
+            messages.info(request, "Usuario não existe")
+            return redirect('entrar')
 
 
 
