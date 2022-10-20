@@ -3,17 +3,17 @@
 
 <br>
 
-<h2>Jogos------</h2>
+<h2>HOME</h2>
 {% if games %}
 {% for game in games %}
 
 
-    <div class="card" style="width: 12rem;">
+    <div class="card" style="width: 12rem; display: inline-block;">
         <img src="static/img/{{game.image}}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{game.title}} - {{game.subtitle}}</h5>
           <p class="card-text">{{game.description}}</p>
-          <a href="{{game.link}}" class="btn btn-primary">Go somewhere</a>
+          <a href="{{game.link}}" class="btn btn-primary">Ir para o jogo</a>
         </div>
       </div>
 

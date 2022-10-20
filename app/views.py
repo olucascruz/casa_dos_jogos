@@ -57,14 +57,10 @@ def entrar(request):
         password = request.POST.get('password')
 
         user = authenticate( username=username, password=password)
-        print(username)
-        print(password)
-        print(user)
         if user:
             login_django(request, user)
             return redirect('home')
         else:
-            messages.info(request, "Usuario não existe")
             return redirect('entrar')
 
 
@@ -93,13 +89,14 @@ def add_jogo(request):
             game = Game(title=title, subtitle=subtitle, developer=user, description=description, genre=genre, image=image, link=link)
             print(image)
             game.save()
-            messages.info(request, "Game cadastrado com sucesso!")
             return redirect('home')
 
+@login_required(login_url="/entrar")
 def sair(request):
     logout(request)
     return redirect("home")
 
+@login_required(login_url="/entrar")
 def meus_jogos(request):
     games = Game.objects.filter(developer = request.user)
 

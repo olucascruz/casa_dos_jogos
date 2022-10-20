@@ -25,10 +25,11 @@
         </div>
         <div class="buttons">
             {% if user.is_authenticated %}
-                {{user.get_username}} &nbsp;&nbsp;
-                <a href="{% url 'sair' %}">Sair</a>
-                <a href="{% url 'add_jogo' %}">Add jogo</a>
-                <a href="{% url 'meus_jogos' %}">Meus jogos</a>
+               <strong>{{user.get_username}}</strong>  &nbsp;&nbsp;
+                <a href="{% url 'meus_jogos' %}" class="btn btn-primary">Meus jogos</a>
+                <a href="{% url 'add_jogo' %}" class="btn btn-success">Add jogo</a>
+                <a href="{% url 'sair' %}" class="btn btn-danger">Sair</a>
+                
 
              {% else %}
             <button onclick="location.href='/entrar'"  type="button" class="btn btn-light">Entrar</button>
@@ -38,12 +39,20 @@
         </div>
     </header>
 
+    {% if messages %}
+    {% for m in messages %}
+    
+    <div class="alert alert-danger" role="alert">
+      {{m}}
+    </div>
+    {% endfor %}
+    {% endif %}
 
     {% block content %}
     {% endblock %}
 
     <footer>
-        <span>FOOTER</span>
+        <img src="{% static 'img/Logo_casa_dos_jogos.png' %}" alt="Logo da casa dos jogos" width="40">
     </footer>
 </body>
 </html>

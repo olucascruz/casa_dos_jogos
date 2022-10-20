@@ -2,20 +2,12 @@
 {% block content %}
 
 <br>
-{% if messages %}
-{% for m in messages %}
-
-<div class="alert alert-danger" role="alert">
-  {{m}}
-</div>
-{% endfor %}
-{% endif %}
 
 {% if games %}
 {% for game in games %}
 
 
-    <div class="card" style="width: 12rem;">
+    <div class="card" style="width: 12rem; display: inline-block;">
         {% load static %} 
         <img src="http://localhost:8000/static/img/{{game.image}}" class="card-img-top" alt="...">
         <div class="card-body">

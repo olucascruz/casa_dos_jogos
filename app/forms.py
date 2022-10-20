@@ -53,7 +53,7 @@ class FormAddGame(forms.ModelForm):
         widgets ={
             'title': forms.TextInput(attrs={'class':'form-control'}),
             'subtitle': forms.TextInput(attrs={'class':'form-control', }),
-            'description': forms.Textarea(attrs={'class':'form-control', 'style':'resize:none;', 'rows':'8'}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'style':'resize:none;', 'rows':'5'}),
             "genre": forms.Select(attrs={'class':'form-control'}),
             'link': forms.TextInput(attrs={'class':'form-control', 
             })
