@@ -78,16 +78,17 @@ def add_jogo(request):
         genre = request.POST.get('genre')
         image = request.FILES.get('image')
         link = request.POST.get('link')
-
+        print(image)
 
         game = Game.objects.filter(title=title).first()
         if game:
             messages.info(request, "Este titulo já existe")
-            return redirect('add_jogo')
+        elif image == None:
+            messages.info(request, "Coloque uma imagem")
         else:
             user = request.user
             game = Game(title=title, subtitle=subtitle, developer=user, description=description, genre=genre, image=image, link=link)
-            print(image)
+            
             game.save()
             return redirect('home')
 

@@ -32,7 +32,7 @@ header{
 
 .buttons{
     position: absolute;
-    right: 0;
+    right: 1rem;
     top: 5%;
 }
 
@@ -43,4 +43,8 @@ footer{
     width: 100%;
     height: auto;
     text-align: center;
+}
+
+.card-container{
+    padding: 3rem 3rem;
 }
