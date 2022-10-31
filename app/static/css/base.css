@@ -48,3 +48,21 @@ footer{
 .card-container{
     padding: 3rem 3rem;
 }
+
+.popupDescription{
+    position:absolute;
+    height: 200px;
+    width: 190px;
+    color: red;
+    font-weight: 500;
+    visibility: hidden;
+}
+
+.contentCard:hover .popupDescription{
+    visibility: visible;
+}
+
+.contentCard:hover .image-game{
+    visibility: hidden;
+}
+
