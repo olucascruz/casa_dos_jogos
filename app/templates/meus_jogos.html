@@ -9,10 +9,12 @@
 
     <div class="card" style="width: 12rem; display: inline-block;">
         {% load static %} 
-        <img src="http://localhost:8000/static/img/{{game.image}}" class="card-img-top" alt="...">
+        <div class="contentCard">
+          <div class="popupDescription">{{game.description}}</div>
+          <img src="http://localhost:8000/static/img/{{game.image}}" class="card-img-top image-game" alt="..." height="200px">
+        </div>
         <div class="card-body">
           <h5 class="card-title">{{game.title}} - {{game.subtitle}}</h5>
-          <p class="card-text">{{game.description}}</p>
           <a href="{% url 'edit_jogo' game.id %}" class="btn btn-primary">Editar</a>
           <hr>
           <a href="{% url 'del_jogo' game.id%}" class="btn btn-primary">Deletar</a>
