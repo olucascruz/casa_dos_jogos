@@ -38,4 +38,5 @@
 - Django
 - HTML
 - CSS
+- SQLite
 
