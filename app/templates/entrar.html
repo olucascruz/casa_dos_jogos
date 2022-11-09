@@ -5,11 +5,12 @@
 
 
 <div class="cadastro">
-  <p>Entrar</p>
+  <h2 style="text-align:center">Entrar</h2>
+  <hr>
   <form action="{% url 'entrar' %}" method="POST">{% csrf_token %}
           {{form.as_p }} 
         <button type="submit" class="btn btn-primary">
-          Entra
+          Entrar
         </button>
   </form>
 </div>  
