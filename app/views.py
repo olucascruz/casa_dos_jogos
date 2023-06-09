@@ -9,7 +9,10 @@ from django.contrib.auth.decorators import login_required
 from app.models import Game
 
 
-from app.forms import FormCadastro, FormEntrar, FormAddGame
+from app.forms.form_cadastro import FormCadastro
+from app.forms.form_entrar import FormEntrar
+from app.forms.form_add_game import FormAddGame
+
 # Create your views here.
 
 def home(request):
@@ -19,6 +22,7 @@ def home(request):
         'games': games
     }
     return render(request, 'home.html', context=context)
+
 
 def cadastro(request):
     if request.method == "GET":
@@ -64,7 +68,6 @@ def entrar(request):
             return redirect('entrar')
 
 
-
 @login_required(login_url="/entrar")
 def add_jogo(request):
     if request.method == "GET":
@@ -92,10 +95,12 @@ def add_jogo(request):
             game.save()
             return redirect('home')
 
+
 @login_required(login_url="/entrar")
 def sair(request):
     logout(request)
     return redirect("home")
+
 
 @login_required(login_url="/entrar")
 def meus_jogos(request):
@@ -105,6 +110,7 @@ def meus_jogos(request):
         'games': games
     }
     return render(request, "meus_jogos.html", context=context)
+
 
 def edit_jogo(request, game_pk):
     game =  Game.objects.get(pk=game_pk)
