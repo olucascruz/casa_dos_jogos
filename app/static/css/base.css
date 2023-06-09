@@ -47,7 +47,9 @@ footer{
 }
 
 .card-container{
-    padding: 3rem 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .popupDescription{
