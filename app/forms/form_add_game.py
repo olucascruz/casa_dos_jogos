@@ -3,6 +3,14 @@ from app.models import Game
 
 
 class FormAddGame(forms.ModelForm):
+    MAX_IMAGE_SIZE_MB = 1  # Tamanho máximo da imagem em megabytes
+
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        if image:
+            if image.size > self.MAX_IMAGE_SIZE_MB * 1024 * 1024:
+                raise forms.ValidationError(f'A imagem não pode ter mais de {self.MAX_IMAGE_SIZE_MB} MB.')
+        return image
     class Meta:
         model = Game
         fields = ('title', 'subtitle', 'description', 'genre', 'image', 'link')
