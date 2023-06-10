@@ -12,12 +12,15 @@ from app.models import Game
 from app.forms.form_cadastro import FormCadastro
 from app.forms.form_entrar import FormEntrar
 from app.forms.form_add_game import FormAddGame
-
+from app.utils.image_utils import prepare_image_for_save, convert_binary_to_image
 # Create your views here.
 
 def home(request):
     games = Game.objects.all()
 
+    # conver binary images in games to images for html 
+    # games = convert_binary_to_image(games)
+    
     context = {
         'games': games,
         'alt': f"Imagem do jogo {games.name}"
@@ -93,8 +96,10 @@ def add_jogo(request):
             elif image == None:
                 messages.info(request, "Coloque uma imagem")
             else:
+                image_binary = prepare_image_for_save(image) 
+
                 user = request.user
-                game = Game(title=title, subtitle=subtitle, developer=user, description=description, genre=genre, image=image, link=link)
+                game = Game(title=title, subtitle=subtitle, developer=user, description=description, genre=genre, image=image_binary, link=link)
                 
                 game.save()
                 return redirect('home')
