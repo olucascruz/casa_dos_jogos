@@ -19,7 +19,8 @@ def home(request):
     games = Game.objects.all()
 
     context = {
-        'games': games
+        'games': games,
+        'alt': f"Imagem do jogo {games.name}"
     }
     return render(request, 'home.html', context=context)
 
@@ -75,26 +76,33 @@ def add_jogo(request):
         context = {'form': form}
         return render(request, "add_jogo.html", context=context)
     else:
-        title = request.POST.get('title')
-        subtitle = request.POST.get('subtitle')
-        description = request.POST.get('description')
-        genre = request.POST.get('genre')
-        image = request.FILES.get('image')
-        link = request.POST.get('link')
-        print(image)
-
-        game = Game.objects.filter(title=title).first()
-        if game:
-            messages.info(request, "Este titulo já existe")
-        elif image == None:
-            messages.info(request, "Coloque uma imagem")
-        else:
-            user = request.user
-            game = Game(title=title, subtitle=subtitle, developer=user, description=description, genre=genre, image=image, link=link)
+        form = FormAddGame(request.POST, request.FILES)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            subtitle = form.cleaned_data['subtitle']
+            description = form.cleaned_data['description']
+            genre = form.cleaned_data['genre']
+            image = form.cleaned_data['image']
+            link = form.cleaned_data['link']
+        
             
-            game.save()
-            return redirect('home')
 
+            game = Game.objects.filter(title=title).first()
+            if game:
+                messages.info(request, "Este titulo já existe")
+            elif image == None:
+                messages.info(request, "Coloque uma imagem")
+            else:
+                user = request.user
+                game = Game(title=title, subtitle=subtitle, developer=user, description=description, genre=genre, image=image, link=link)
+                
+                game.save()
+                return redirect('home')
+        else:
+            # O formulário é inválido, tratar os erros
+            messages.error(request, "Formulário inválido")
+            context = {'form': form}
+            return render(request, "add_jogo.html", context=context)
 
 @login_required(login_url="/entrar")
 def sair(request):
