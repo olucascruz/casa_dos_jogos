@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'casa_dos_jogos.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'qzdbbcpw',
+        'USER': 'qzdbbcpw',
+        'PASSWORD': os.environ['API_KEY_DB'],
+        'HOST': os.environ['DB_HOST'],
+        'PORT': '5432',
     }
 }
 
